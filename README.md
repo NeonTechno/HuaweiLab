@@ -1,37 +1,51 @@
 # LabGuard — Smart Laboratory Access
 
-A responsive static website prototype for an IoT laboratory access system. It is ready to publish with GitHub Pages.
+**Live website:** https://neontechno.github.io/HuaweiLab/  
+**GitHub repository:** https://github.com/NeonTechno/HuaweiLab
 
-## Publish with GitHub Pages
-1. Create a GitHub repository (for example, `labguard-iot`).
-2. Upload the contents of this folder to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select branch `main` and folder `/ (root)`, then Save.
-6. GitHub will show the published URL after deployment.
+LabGuard is a responsive website prototype for an IoT-powered laboratory access system. It is designed to work alongside a fingerprint module, an access controller, an electric door lock, and a magnetic door-position sensor. The website is published through GitHub Pages.
 
-A GitHub Actions workflow is also included to deploy the static site automatically when you push to `main`. If using the workflow, set Pages source to **GitHub Actions** in Settings → Pages.
+## Website deployment
+
+This repository is configured to deploy the static website automatically through GitHub Actions.
+
+- **Published URL:** https://neontechno.github.io/HuaweiLab/
+- **Source branch:** `main`
+- **Deployment workflow:** `.github/workflows/pages.yml`
+
+To manage deployment:
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, keep **Source** set to **GitHub Actions**.
+3. Open the **Actions** tab to view deployment runs and logs.
+4. After a successful deployment, visit the website URL above.
+
+Updates pushed to `main` trigger the deployment workflow.
 
 ## Important prototype limitations
-- The status and activity shown are sample/demo data.
-- This website does not unlock a real door and is not connected to a fingerprint reader.
-- Replace demo data with a secure backend API before deployment for operational use.
+
+- The status and activity currently shown are sample/demo data.
+- This website does not unlock a real door and is not yet connected to the physical fingerprint reader or controller.
+- Connect a secure backend API before using the dashboard for real laboratory access.
 - Do not store or send raw fingerprint images/templates from the Android app. Prefer a fingerprint module that performs matching locally and returns a user/reference ID plus match result.
 - Use authenticated, encrypted API requests; role-based access; audit logs; rate limiting; and a manual emergency override.
 - Door status should come from a door-position sensor, not merely from the unlock command. A successful unlock pulse does not prove that the door physically opened.
 
 ## Suggested IoT architecture
-Fingerprint sensor/module → microcontroller or access controller → secure backend/API → Android app + website dashboard.
+
+Fingerprint sensor/module → ESP32 or access controller → secure backend/API → Android app + website dashboard.
 
 The controller should:
 1. Receive a fingerprint match result from the biometric module.
 2. Check the user's authorization and access schedule.
 3. Trigger the electric lock only when authorized.
-4. Read a magnetic/reed door sensor to determine actual open/closed state.
-5. Send signed/authenticated access and door-state events to the backend.
+4. Read the magnetic/reed door sensor to determine the actual open/closed state.
+5. Send authenticated access and door-state events to the backend.
+
+Emergency egress and manual override must remain available independently of the app, network, and cloud service.
 
 ## Suggested API contract
-- `GET /api/labs/{labId}/status` — actual door state, device online state, last update.
+
+- `GET /api/labs/{labId}/status` — actual door state, device online state, and last update.
 - `GET /api/labs/{labId}/events` — recent access events.
 - `POST /api/access/verify` — submit a module-generated match event, not fingerprint data.
 - `POST /api/devices/heartbeat` — controller health/status.

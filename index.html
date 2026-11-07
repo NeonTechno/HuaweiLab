@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="LabGuard — smart laboratory access and live door status.">
+  <title>LabGuard | Smart Laboratory Access</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-mark">L</span><span>LABGUARD<small>SMART ACCESS SYSTEM</small></span></a>
+      <nav><a href="#status">Live status</a><a href="#how">How it works</a><a href="#activity">Activity</a></nav>
+      <span class="connection"><i></i> Demo environment</span>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">CONNECTED CAMPUS · LAB ACCESS</p>
+          <h1>Your lab.<br><em>Under control.</em></h1>
+          <p class="intro">A smarter way to check laboratory availability and manage secure, fingerprint-authorized entry.</p>
+          <a class="primary-link" href="#status">View laboratory status <span>↘</span></a>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a secure smart laboratory door">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="door"><div class="door-window"></div><div class="door-handle"></div><div class="scan"><span>◎</span></div></div>
+          <div class="art-tag"><i></i> SECURE ENTRY</div>
+          <div class="art-caption">BIOMETRIC<br>VERIFICATION</div>
+        </div>
+      </section>
+      <section id="status" class="status-section">
+        <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>Laboratory status</h2></div><span class="updated">● DEMO DATA · NOT CONNECTED TO HARDWARE</span></div>
+        <div class="status-grid">
+          <article class="status-card main-status">
+            <div class="card-top"><span class="label">LAB DOOR</span><span class="pill" id="doorPill">● CLOSED</span></div>
+            <div class="door-state"><div class="state-icon" id="doorIcon">⌑</div><div><h3 id="doorTitle">Door is closed</h3><p id="doorDescription">The laboratory is currently secured.</p></div></div>
+            <div class="card-foot"><span>LABORATORY 01</span><span id="doorTime">Last updated just now</span></div>
+          </article>
+          <article class="status-card">
+            <div class="card-top"><span class="label">ACCESS CONTROL</span><span class="mini-icon">⌁</span></div>
+            <div class="metric"><strong>ACTIVE</strong><span>Fingerprint reader</span></div>
+            <p class="muted">Reader connectivity is simulated in this preview.</p>
+          </article>
+          <article class="status-card">
+            <div class="card-top"><span class="label">TODAY'S ACTIVITY</span><span class="mini-icon">↗</span></div>
+            <div class="metric"><strong id="eventCount">08</strong><span>Access events</span></div>
+            <p class="muted">Sample activity for interface preview.</p>
+          </article>
+        </div>
+      </section>
+      <section class="access-panel">
+        <div><p class="eyebrow">STUDENT ACCESS</p><h2>Entry starts with<br>verification.</h2><p class="muted">Use the approved Android application and the registered fingerprint reader at the laboratory entrance. This website preview does not unlock a physical door.</p></div>
+        <div class="access-steps"><div><b>01</b><span><strong>Identify</strong><small>Student presents their registered fingerprint.</small></span></div><div><b>02</b><span><strong>Verify</strong><small>The biometric module checks the enrolled template locally.</small></span></div><div><b>03</b><span><strong>Unlock</strong><small>Only an authorized result triggers the door controller.</small></span></div></div>
+      </section>
+      <section id="activity" class="activity-section">
+        <div class="section-heading"><div><p class="eyebrow">SYSTEM MONITOR</p><h2>Recent activity</h2></div><span class="updated">SAMPLE EVENTS</span></div>
+        <div class="activity-list" id="activityList">
+          <div class="activity-row"><span class="activity-dot success"></span><span><strong>Access granted</strong><small>Student ID STU-2041 · Fingerprint verified</small></span><time>09:42 AM</time><b class="result granted">GRANTED</b></div>
+          <div class="activity-row"><span class="activity-dot denied"></span><span><strong>Access denied</strong><small>Unrecognized fingerprint · No unlock</small></span><time>09:18 AM</time><b class="result rejected">DENIED</b></div>
+          <div class="activity-row"><span class="activity-dot neutral"></span><span><strong>Door closed</strong><small>Door sensor reported secure state</small></span><time>08:56 AM</time><b class="result logged">LOGGED</b></div>
+        </div>
+      </section>
+      <section id="how" class="how-section"><p class="eyebrow">BUILT FOR A CONNECTED CAMPUS</p><h2>One clear view of<br>who can enter — and when.</h2><p class="muted">LabGuard brings biometric access events and door sensor status into one simple experience. The live dashboard will update when the IoT controller and backend API are connected.</p></section>
+    </main>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark">L</span><span>LABGUARD<small>SMART ACCESS SYSTEM</small></span></a><span>Prototype interface · Connect hardware before operational use</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body></html>
